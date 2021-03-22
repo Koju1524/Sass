@@ -1,0 +1,22 @@
+.footer {
+  padding: 70px 0; }
+  .footer__sns__list {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap; }
+    .footer__sns__list__btn.is-twitter a {
+      background-color: #2fbbed; }
+    .footer__sns__list__btn.is-facebook a {
+      background-color: #4668b3; }
+    .footer__sns__list__btn.is-google a {
+      background-color: #de5745; }
+    .footer__sns__list__btn.is-pinterest a {
+      background-color: #d94348; }
+    .footer__sns__list__btn.is-behance a {
+      background-color: #3079ff; }
+    .footer__sns__list__btn.is-dribbble a {
+      background-color: #eb6397; }
+    .footer__sns__list > li {
+      width: 32%; }
+      .footer__sns__list > li:nth-child(n+4) {
+        margin-top: 20px; }
