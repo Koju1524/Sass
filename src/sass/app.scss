@@ -1,4 +1,4 @@
-//@import './variable';
+// @import './variable';
 
 //Question1
 // .footer {
@@ -54,56 +54,7 @@
 //   }
 // }
 
-// question2
-
-// .footer {
-//   padding: 70px 0;
-
-//   $snsName: facebook, google, twitter, pinterest, behance, dribbble;
-//   $snsColor: #4668b3, #de5745, #2fbbed, #d94348, #3079ff, #eb6397;
-
-//   @mixin btn($color) {
-//     display: block;
-//     padding: 20px 30px;
-//     color: #fff;
-//     border-radius: 6px;
-//     cursor: pointer;
-//     background-color: $color;
-//     text: {
-//       decoration: none;
-//       align: center;
-//     }
-//   }
-
-//   &__sns {
-//     &__list {
-//       display: flex;
-//       justify-content: space-between;
-//       flex-wrap: wrap;
-
-//       & > li {
-//         width: 32%;
-//         &:nth-child(n+4){
-//           margin-top: 20px;
-//         }
-//       }
-//     }
-//     &__btn {
-//       @each $color in $snsName {
-//         // @debug $color; でここで$colorにどの値が入っているのか確認 ①
-//         $index_key: index($snsName, $color); //index()関数,$snsNameの中の特定の値のインデックスを返す
-//         // @debug $index_key でここで$index_keyにどの値が入っているのか確認 ②
-//         &.is-#{$color}{
-//           // @include btn(引数: カラーコード)
-//           // nth(配列, インデックス) => カラーコードの取得
-//           @include btn(nth($snsColor, $index_key)); //nth()関数,snsColorの n 番目の値を取得する nth() 関数
-//         }
-//       }
-//     }
-//   }
-// }
-
-// question3
+//question2
 
 .footer {
   padding: 70px 0;
@@ -127,33 +78,80 @@
       justify-content: space-between;
       flex-wrap: wrap;
 
-    $map: (
-      twitter: #2fbbed,
-      facebook: #4668b3,
-      google: #de5745,
-      pinterest: #d94348,
-      behance: #3079ff,
-      dribbble: #eb6397,
-    );
-
-    @debug $map;
-    &__btn {
-      @each $class, $color in $map {
-        &.is-#{$class} {
-          a {
-            background-color: map-get($map, $class);  //function map-get()は、指定したキーの値を取得する関数
-          }
-        }
-      }
-    }
-
       & > li {
         width: 32%;
-
         &:nth-child(n+4){
           margin-top: 20px;
         }
       }
     }
+    &__btn {
+
+      $snsName: facebook, google, twitter, pinterest, behance, dribbble;
+      $snsColor: #4668b3, #de5745, #2fbbed, #d94348, #3079ff, #eb6397;
+
+      @each $sns in $snsName {
+        $index_key: index($snsName, $sns);
+
+        //@debug $index_key;
+        &.is-#{$sns}{
+          @include btn(nth($snsColor, $index_key));
+          //@debug nth($snsColor, $index_key);
+        }
+      }
+    }
   }
 }
+
+// question3
+
+// .footer {
+//   padding: 70px 0;
+
+//   @mixin btn($color) {
+//     display: block;
+//     padding: 20px 30px;
+//     color: #fff;
+//     border-radius: 6px;
+//     cursor: pointer;
+//     background-color: $color;
+//     text: {
+//       decoration: none;
+//       align: center;
+//     }
+//   }
+
+//   &__sns {
+//     &__list {
+//       display: flex;
+//       justify-content: space-between;
+//       flex-wrap: wrap;
+
+//       & > li {
+//         width: 32%;
+
+//         &:nth-child(n+4){
+//           margin-top: 20px;
+//         }
+//       }
+//     }
+
+//     $map: (
+//       twitter: #2fbbed,
+//       facebook: #4668b3,
+//       google: #de5745,
+//       pinterest: #d94348,
+//       behance: #3079ff,
+//       dribbble: #eb6397,
+//     );
+
+//     &__btn {
+//       @each $class, $color in $map {
+//         &.is-#{$class} {
+//           @include btn($color);
+//           //@include btn(color: map-get($map, $class));
+//         }
+//       }
+//     }
+//   }
+// }
